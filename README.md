@@ -1,2 +1,2 @@
 # Philosophers
-A Project in 1337 School, 9 june 2022
+A Project in 1337 school, manage threads and processes.
