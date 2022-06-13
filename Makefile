@@ -10,5 +10,32 @@
 #                                                                              #
 # **************************************************************************** #
 
-gcc -g -pthread main.c -o main
+NAME	=	philo
 
+HEADER	=	philo.h
+
+SRCS	=	test.c\
+			philo.c\
+
+OBJS	=	$(SRCS:.c=.o)
+
+CC		=	cc
+
+CFLAGS	=	-Wall -Wextra -Werror
+
+RM		=	rm -f
+
+$(NAME)	:	$(OBJS) $(HEADER)
+			$(CC) $(CFLAGS) -g -pthread $(OBJS) -o $(NAME)
+
+all		:	$(NAME)
+
+clean	:
+			$(RM) $(OBJS) 
+
+fclean	: clean
+				$(RM) $(NAME) $(OBJS) 
+
+re		:	fclean all
+
+.PHONY	:	all clean fclean re

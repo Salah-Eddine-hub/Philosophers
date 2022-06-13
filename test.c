@@ -6,15 +6,11 @@
 /*   By: sharrach <sharrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:23:42 by sharrach          #+#    #+#             */
-/*   Updated: 2022/06/09 16:47:07 by sharrach         ###   ########.fr       */
+/*   Updated: 2022/06/13 14:42:18 by sharrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <pthread.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
+#include "philo.h"
 
 pthread_t tid[2];
 int counter;

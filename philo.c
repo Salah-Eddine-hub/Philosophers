@@ -1,19 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   codeVault_explaination.c                           :+:      :+:    :+:   */
+/*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sharrach <sharrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 18:07:52 by sharrach          #+#    #+#             */
-/*   Updated: 2022/06/09 18:31:58 by sharrach         ###   ########.fr       */
+/*   Updated: 2022/06/13 14:42:35 by sharrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <pthread.h>
-#include <stdio.h>
-#include <unistd.h>
+#include "philo.h"
 
 void*	routine() {
 	printf("Test from threads\n");
