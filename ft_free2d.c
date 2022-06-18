@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   ft_free2d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sharrach <sharrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 14:41:27 by sharrach          #+#    #+#             */
-/*   Updated: 2022/06/18 18:50:11 by sharrach         ###   ########.fr       */
+/*   Created: 2022/06/18 16:45:12 by sharrach          #+#    #+#             */
+/*   Updated: 2022/06/18 16:45:31 by sharrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef PHILO_H
-#define PHILO_H
+#include "philo.h"
 
-#include <pthread.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
+void	*free2d(char **arr)
+{
+	int	i;
 
-typedef struct  args{
-	int     nb_philo;
-	long	t_die;
-	long	t_eat;
-	long	t_sleep;
-	long	nb_meals;
-}	t_args;
-
-int		ft_satoi(const char *str, long *nb);
-void	*free2d(char **arr);
-
-#endif
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free (arr);
+	return (NULL);
+}

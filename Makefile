@@ -21,19 +21,19 @@ OBJS	=	$(SRCS:.c=.o)
 
 CC		=	cc
 
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror -g -pthread
 
 RM		=	rm -f
 
 $(NAME)	:	$(OBJS) $(HEADER)
-			$(CC) $(CFLAGS) -g -pthread $(OBJS) -o $(NAME)
+			$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 all		:	$(NAME)
 
 clean	:
 			$(RM) $(OBJS) 
 
-fclean	: clean
+fclean	: 	clean
 				$(RM) $(NAME) $(OBJS) 
 
 re		:	fclean all
