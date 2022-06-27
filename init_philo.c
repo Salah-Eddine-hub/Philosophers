@@ -6,7 +6,7 @@
 /*   By: sharrach <sharrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 14:14:47 by sharrach          #+#    #+#             */
-/*   Updated: 2022/06/27 21:51:16 by sharrach         ###   ########.fr       */
+/*   Updated: 2022/06/28 00:43:30 by sharrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,19 @@ static int	get_args(t_data **data, int argc, char **argv)
 	tmp->t_sleep = ft_atoi(argv[4]);
 	if (tmp->num_philos < 1 || tmp->num_philos > 250 || tmp->t_die < 1
 		|| tmp->t_eat < 1 || tmp->t_sleep < 1)
-		return (printf("Error\nWrong arguments"));
+		return (printf("Error\nWrong arguments\n"), -1);
 	tmp->num_eat = -1;
 	if (argc == 6)
 	{
 		tmp->num_eat = ft_atoi(argv[5]);
 		if (tmp->num_eat == -1)
-			return (printf("Error\nWrong arguments"));
+			return (printf("Error\nWrong arguments\n"), -1);
 	}
 	tmp->stop = 0;
 	*data = tmp;
 	return (0);
 }
-
+ 
 static int	init_mutex_fork(t_data *data)
 {
 	int				i;
@@ -83,7 +83,7 @@ int	init_philos(t_philo **philos, int argc, char **argv)
 	int		i;
 
 	if (get_args(&data, argc, argv) == -1)
-		return (0);
+		return (-1);
 	if (pthread_mutex_init(&data->mutex_printf, NULL))
 		return (printf("Error\n"));
 	if (init_mutex_fork(data) == -1)

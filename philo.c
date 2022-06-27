@@ -6,7 +6,7 @@
 /*   By: sharrach <sharrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:50:04 by sharrach          #+#    #+#             */
-/*   Updated: 2022/06/27 18:55:49 by sharrach         ###   ########.fr       */
+/*   Updated: 2022/06/28 00:41:04 by sharrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,20 @@ void	*routine(void *args)
 	philo = (t_philo *)args;
 	while (!philo->data->stop)
 	{
-		philo_print(philo, "is thinking");
 		pthread_mutex_lock(philo->lf);
 		philo_print(philo, "has taken a fork");
 		pthread_mutex_lock(philo->rf);
 		philo_print(philo, "has taken a fork");
 		philo_print(philo, "is eating");
-		usleep(philo->data->t_eat * 1000 - 20000);
 		philo->t_meal = find_time();
+		usleep(philo->data->t_eat * 1000);
 		pthread_mutex_unlock(philo->rf);
 		pthread_mutex_unlock(philo->lf);
 		if (!philo->data->stop)
 			philo->num_eat_count += 1;
 		philo_print(philo, "is sleeping");
-		usleep(philo->data->t_sleep * 1000 - 20000);
+		usleep(philo->data->t_sleep * 1000);
+		philo_print(philo, "is thinking");
 	}
 	return (0);
 }
