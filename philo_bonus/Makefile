@@ -5,26 +5,25 @@
 #                                                     +:+ +:+         +:+      #
 #    By: sharrach <sharrach@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/06/25 14:21:09 by sharrach          #+#    #+#              #
-#    Updated: 2022/06/27 15:37:21 by sharrach         ###   ########.fr        #
+#    Created: 2022/06/27 18:34:51 by sharrach          #+#    #+#              #
+#    Updated: 2022/06/27 22:10:25 by sharrach         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	philo
+NAME	=	philo_bonus
 
-HEADER	=	philo.h
+HEADER	=	philo_bonus.h
 
-SRCS	=	init_philo.c\
-			philo.c\
-			utils.c\
+SRCS	=	philo_bonus.c\
+			utils_bonus.c\
 
 OBJS	=	$(SRCS:.c=.o)
 
 CC		=	cc
 
-CFLAGS	=	-Wall -Wextra -Werror -g -pthread
+CFLAGS	=	-Wall -Wextra -Werror
 
-RM		=	rm -f
+RM		=	rm -fclean
 
 $(NAME)	:	$(OBJS) $(HEADER)
 			$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
@@ -32,9 +31,9 @@ $(NAME)	:	$(OBJS) $(HEADER)
 all		:	$(NAME)
 
 clean	:
-			$(RM) $(OBJS) 
+			$(RM) $(NAME) $(OBJS)
 
-fclean	: 	clean
-				$(RM) $(NAME) $(OBJS) 
+fclean	:	clean
+				$(RM) $(NAME) $(OBJS)
 
 re		:	fclean all
