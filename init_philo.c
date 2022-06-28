@@ -6,7 +6,7 @@
 /*   By: sharrach <sharrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 14:14:47 by sharrach          #+#    #+#             */
-/*   Updated: 2022/06/28 00:43:30 by sharrach         ###   ########.fr       */
+/*   Updated: 2022/06/28 09:18:26 by sharrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	get_args(t_data **data, int argc, char **argv)
 	tmp->t_die = ft_atoi(argv[2]);
 	tmp->t_eat = ft_atoi(argv[3]);
 	tmp->t_sleep = ft_atoi(argv[4]);
-	if (tmp->num_philos < 1 || tmp->num_philos > 250 || tmp->t_die < 1
+	if (tmp->num_philos < 1 || tmp->num_philos > 200 || tmp->t_die < 1
 		|| tmp->t_eat < 1 || tmp->t_sleep < 1)
 		return (printf("Error\nWrong arguments\n"), -1);
 	tmp->num_eat = -1;
@@ -41,7 +41,7 @@ static int	get_args(t_data **data, int argc, char **argv)
  
 static int	init_mutex_fork(t_data *data)
 {
-	int				i;
+	int	i;
 
 	data->mutex_fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
 						* data->num_forks);
@@ -51,7 +51,7 @@ static int	init_mutex_fork(t_data *data)
 	while (i < data->num_forks)
 	{
 		if (pthread_mutex_init(data->mutex_fork + i, NULL))
-			return (printf("Error\n"));
+			return (printf("Error\n"), -1);
 		i++;
 	}
 	return (0);
@@ -85,9 +85,9 @@ int	init_philos(t_philo **philos, int argc, char **argv)
 	if (get_args(&data, argc, argv) == -1)
 		return (-1);
 	if (pthread_mutex_init(&data->mutex_printf, NULL))
-		return (printf("Error\n"));
+		return (printf("Error\n"), -1);
 	if (init_mutex_fork(data) == -1)
-		return (0);
+		return (-1);
 	tmp = (t_philo *)malloc(sizeof(t_philo) * data->num_philos);
 	if (!tmp)
 		return (0);
