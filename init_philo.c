@@ -6,7 +6,7 @@
 /*   By: sharrach <sharrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 14:14:47 by sharrach          #+#    #+#             */
-/*   Updated: 2022/06/28 09:18:26 by sharrach         ###   ########.fr       */
+/*   Updated: 2022/06/29 15:44:03 by sharrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ static int	get_args(t_data **data, int argc, char **argv)
 	*data = tmp;
 	return (0);
 }
- 
+
 static int	init_mutex_fork(t_data *data)
 {
 	int	i;
 
 	data->mutex_fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
-						* data->num_forks);
+			* data->num_forks);
 	if (!data->mutex_fork)
 		return (0);
 	i = 0;

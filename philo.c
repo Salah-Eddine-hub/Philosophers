@@ -6,7 +6,7 @@
 /*   By: sharrach <sharrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:50:04 by sharrach          #+#    #+#             */
-/*   Updated: 2022/06/28 12:58:09 by sharrach         ###   ########.fr       */
+/*   Updated: 2022/06/29 15:42:44 by sharrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	philo_print(t_philo *philo, char *str)
 	pthread_mutex_lock(&philo->data->mutex_printf);
 	if (!philo->data->stop)
 		printf("%lld %d %s\n",
-				find_time() - philo->data->t_start, philo->index, str);
+			find_time() - philo->data->t_start, philo->index, str);
 	pthread_mutex_unlock(&philo->data->mutex_printf);
 }
 
@@ -55,9 +55,9 @@ void	*check_thread(void *args)
 	philos = (t_philo *)args;
 	while (!philos->data->stop)
 	{
-		i = 0;
+		i = -1;
 		flag_all_eat = 0;
-		while (i < philos->data->num_philos)
+		while (++i < philos->data->num_philos)
 		{
 			if (find_time() - (philos + i)->t_meal > philos->data->t_die)
 			{
@@ -65,10 +65,9 @@ void	*check_thread(void *args)
 				philos->data->stop = 1;
 				break ;
 			}
-			if (philos->data->num_eat != -1 &&
-				(philos + i)->num_eat_count >= philos->data->num_eat)
+			if (philos->data->num_eat != -1
+				&& (philos + i)->num_eat_count >= philos->data->num_eat)
 				flag_all_eat++;
-			i++;
 		}
 		if (flag_all_eat == philos->data->num_philos)
 			philos->data->stop = 1;
@@ -92,7 +91,7 @@ void	philo_start(t_philo *philos)
 		i++;
 	}
 	if (pthread_create(&philos->data->check_thread,
-						NULL, &check_thread, philos))
+			NULL, &check_thread, philos))
 		printf("Error\nFailed to create the thread\n");
 	if (pthread_join(philos->data->check_thread, NULL))
 		printf("Error\nFailed to join the thread\n");

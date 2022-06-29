@@ -6,11 +6,20 @@
 /*   By: sharrach <sharrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:34:55 by sharrach          #+#    #+#             */
-/*   Updated: 2022/06/29 12:21:38 by sharrach         ###   ########.fr       */
+/*   Updated: 2022/06/29 15:38:51 by sharrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
+
+static	void	philo_print(t_philo *philo, char *str)
+{
+	sem_wait(philo->block_printf);
+	if (!philo->stop)
+		printf("%lld %d %s\n",
+			find_time() - philo->t_start, philo->index, str);
+	sem_post(philo->block_printf);
+}
 
 static	void	*check_monitor(void *args)
 {
@@ -24,8 +33,8 @@ static	void	*check_monitor(void *args)
 		{
 			philo->died = 1;
 			sem_wait(philo->block_printf);
-			printf("%lld %d %s\n", \
-					find_time() - philo->t_start, philo->index, "died");
+			printf("%lld %d %s\n",
+				find_time() - philo->t_start, philo->index, "died");
 			philo->stop = 1;
 			break ;
 		}
@@ -45,7 +54,7 @@ static	void	philo_start(t_philo *philo)
 {
 	if (pthread_create(&philo->check_monitor,
 			NULL, &check_monitor, philo))
-		printf("Error\nFailed to create the thread\n", -1);
+		printf("Error\nFailed to create the thread\n");
 	if (philo->index % 2 == 1)
 		usleep(1000);
 	while (1)
@@ -65,7 +74,7 @@ static	void	philo_start(t_philo *philo)
 		philo_print(philo, "is thinking");
 	}
 	if (pthread_join(philo->check_monitor, NULL))
-		printf("Error\nFailed to join the thread\n", -1);
+		printf("Error\nFailed to join the thread\n");
 }
 
 static	void	exit_philo(t_philo **philo)
@@ -102,19 +111,20 @@ int	main(int argc, char **argv)
 	int		i;
 
 	philo = init_philo(argc, argv);
-	i = -1;
+	i = 0;
 	philo->t_start = find_time();
-	while (++i < philo->num_philos)
+	while (i < philo->num_philos)
 	{
 		philo->pid[i] = fork();
 		if (philo->pid[i] == -1)
-			printf("Error\n", -1);
+			printf("Error\n");
 		if (philo->pid[i] == 0)
 		{
 			philo->index = i + 1;
 			philo->t_meal = find_time();
 			philo_start(philo);
 		}
+		i++;
 	}
 	exit_philo(&philo);
 	return (0);
