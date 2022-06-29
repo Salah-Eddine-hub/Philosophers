@@ -6,7 +6,7 @@
 #    By: sharrach <sharrach@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/27 18:34:51 by sharrach          #+#    #+#              #
-#    Updated: 2022/06/28 14:13:30 by sharrach         ###   ########.fr        #
+#    Updated: 2022/06/29 12:22:13 by sharrach         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ HEADER	=	philo_bonus.h
 
 SRCS	=	philo_bonus.c\
 			utils_bonus.c\
+			init_pihlo_bonus.c
 
 OBJS	=	$(SRCS:.c=.o)
 
