@@ -6,11 +6,12 @@
 /*   By: sharrach <sharrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:50:04 by sharrach          #+#    #+#             */
-/*   Updated: 2022/06/30 17:41:23 by sharrach         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:15:08 by sharrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <string.h>
 
 void	philo_print(t_philo *philo, char *str)
 {
@@ -18,6 +19,8 @@ void	philo_print(t_philo *philo, char *str)
 	if (!philo->data->stop)
 		printf("%lld %d %s\n",
 			find_time() - philo->data->t_start, philo->index, str);
+	if (!ft_strcmp(str, "died"))
+		philo->data->stop = 1;
 	pthread_mutex_unlock(&philo->data->mutex_printf);
 }
 
@@ -62,11 +65,10 @@ void	*check_thread(void *args)
 			if (find_time() - (philos + i)->t_meal > philos->data->t_die)
 			{
 				philo_print(philos + i, "died");
-				philos->data->stop = 1;
 				break ;
 			}
 			if (philos->data->num_eat != -1
-				&& (philos + i)->num_eat_count >= philos->data->num_eat)
+				&& philos[i].num_eat_count == philos->data->num_eat)
 				flag_all_eat++;
 		}
 		if (flag_all_eat == philos->data->num_philos)

@@ -6,7 +6,7 @@
 /*   By: sharrach <sharrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:34:58 by sharrach          #+#    #+#             */
-/*   Updated: 2022/06/29 15:30:46 by sharrach         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:23:15 by sharrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_philo
 long long	find_time(void);
 int			ft_exit(char *str);
 int			ft_atoi(const char *str);
+void		ft_usleep(long time);
 t_philo		*init_philo(int argc, char **argv);
 
 #endif

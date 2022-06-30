@@ -6,11 +6,21 @@
 /*   By: sharrach <sharrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:35:02 by sharrach          #+#    #+#             */
-/*   Updated: 2022/06/29 15:39:46 by sharrach         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:22:50 by sharrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
+
+static	int	ft_strlen(const	char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i ++;
+	return (i);
+}
 
 long long	find_time(void)
 {
@@ -18,6 +28,15 @@ long long	find_time(void)
 
 	gettimeofday(&t, NULL);
 	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
+}
+
+void	ft_usleep(long time)
+{
+	long	c_time;
+
+	c_time = find_time();
+	while (c_time + time > find_time())
+		usleep(50);
 }
 
 int	ft_exit(char *str)
@@ -54,5 +73,7 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	result *= s;
+	if (i != ft_strlen(str))
+		return (0);
 	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: sharrach <sharrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 17:49:46 by sharrach          #+#    #+#             */
-/*   Updated: 2022/06/30 17:35:18 by sharrach         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:18:45 by sharrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ typedef struct s_philo
 }t_philo;
 
 long long	find_time(void);
-int			init_philos(t_philo **philos, int argc, char **argv);
 int			ft_atoi(const char *str);
 void		ft_usleep(long time);
+int			ft_strcmp(const char *s1, const char *s2);
+int			init_philos(t_philo **philos, int argc, char **argv);
 
 #endif

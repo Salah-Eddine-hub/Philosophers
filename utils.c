@@ -6,7 +6,7 @@
 /*   By: sharrach <sharrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 23:17:22 by sharrach          #+#    #+#             */
-/*   Updated: 2022/06/30 17:49:21 by sharrach         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:25:33 by sharrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,26 @@ static	int	ft_strlen(const	char *str)
 	return (i);
 }
 
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	size_t	i;
+
+	i = 0;
+	while ((s1[i] != '\0' || s2[i] != '\0'))
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	return (0);
+}
+
 void	ft_usleep(long time)
 {
 	long	c_time;
 
 	c_time = find_time();
-	while(c_time + time > find_time())
+	while (c_time + time > find_time())
 		usleep(50);
 }
 

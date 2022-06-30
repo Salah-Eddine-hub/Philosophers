@@ -6,7 +6,7 @@
 /*   By: sharrach <sharrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:34:55 by sharrach          #+#    #+#             */
-/*   Updated: 2022/06/29 15:38:51 by sharrach         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:36:07 by sharrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static	void	philo_start(t_philo *philo)
 			NULL, &check_monitor, philo))
 		printf("Error\nFailed to create the thread\n");
 	if (philo->index % 2 == 1)
-		usleep(1000);
+		usleep(100);
 	while (1)
 	{
 		sem_wait(philo->block_fork);
@@ -65,12 +65,12 @@ static	void	philo_start(t_philo *philo)
 		philo_print(philo, "has taken a fork");
 		philo_print(philo, "is eating");
 		philo->t_meal = find_time();
-		usleep(philo->t_eat * 1000);
+		ft_usleep(philo->t_eat);
 		sem_post(philo->block_fork);
 		sem_post(philo->block_fork);
 		philo->num_eat_count += 1;
 		philo_print(philo, "is sleeping");
-		usleep(philo->t_sleep * 1000);
+		ft_usleep(philo->t_sleep);
 		philo_print(philo, "is thinking");
 	}
 	if (pthread_join(philo->check_monitor, NULL))
