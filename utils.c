@@ -6,11 +6,30 @@
 /*   By: sharrach <sharrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 23:17:22 by sharrach          #+#    #+#             */
-/*   Updated: 2022/06/29 15:43:03 by sharrach         ###   ########.fr       */
+/*   Updated: 2022/06/30 17:49:21 by sharrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static	int	ft_strlen(const	char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i ++;
+	return (i);
+}
+
+void	ft_usleep(long time)
+{
+	long	c_time;
+
+	c_time = find_time();
+	while(c_time + time > find_time())
+		usleep(50);
+}
 
 long long	find_time(void)
 {
@@ -42,5 +61,7 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	result *= s;
+	if (i != ft_strlen(str))
+		return (0);
 	return (result);
 }
