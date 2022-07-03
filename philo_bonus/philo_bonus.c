@@ -6,7 +6,7 @@
 /*   By: sharrach <sharrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:34:55 by sharrach          #+#    #+#             */
-/*   Updated: 2022/06/30 20:36:07 by sharrach         ###   ########.fr       */
+/*   Updated: 2022/07/03 17:26:25 by sharrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static	void	*check_monitor(void *args)
 	philo = (t_philo *)args;
 	while (!philo->stop)
 	{
-		usleep(100);
 		if (find_time() - philo->t_meal > philo->t_die)
 		{
 			philo->died = 1;
@@ -43,9 +42,10 @@ static	void	*check_monitor(void *args)
 			philo->stop = 1;
 			break ;
 		}
+		usleep(100);
 	}
 	if (philo->died)
-		exit (1);
+		exit(1);
 	else
 		exit (0);
 }
@@ -55,7 +55,7 @@ static	void	philo_start(t_philo *philo)
 	if (pthread_create(&philo->check_monitor,
 			NULL, &check_monitor, philo))
 		printf("Error\nFailed to create the thread\n");
-	if (philo->index % 2 == 1)
+	if (philo->index % 2 == 0)
 		usleep(100);
 	while (1)
 	{
@@ -66,14 +66,14 @@ static	void	philo_start(t_philo *philo)
 		philo_print(philo, "is eating");
 		philo->t_meal = find_time();
 		ft_usleep(philo->t_eat);
-		sem_post(philo->block_fork);
-		sem_post(philo->block_fork);
 		philo->num_eat_count += 1;
+		sem_post(philo->block_fork);
+		sem_post(philo->block_fork);
 		philo_print(philo, "is sleeping");
 		ft_usleep(philo->t_sleep);
 		philo_print(philo, "is thinking");
 	}
-	if (pthread_join(philo->check_monitor, NULL))
+	if (pthread_detach(philo->check_monitor))
 		printf("Error\nFailed to join the thread\n");
 }
 

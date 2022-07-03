@@ -6,7 +6,7 @@
 /*   By: sharrach <sharrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 18:34:58 by sharrach          #+#    #+#             */
-/*   Updated: 2022/06/30 20:23:15 by sharrach         ###   ########.fr       */
+/*   Updated: 2022/07/01 09:00:43 by sharrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ typedef struct s_philo
 	int				*pid;
 	sem_t			*block_printf;
 	sem_t			*block_fork;
-	long long int	t_start;
+	long long		t_start;
 	int				index;
-	long long int	t_meal;
+	long long		t_meal;
 	pthread_t		check_monitor;
 }t_philo;
 

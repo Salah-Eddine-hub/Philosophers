@@ -6,7 +6,7 @@
 /*   By: sharrach <sharrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:11:16 by sharrach          #+#    #+#             */
-/*   Updated: 2022/06/29 15:36:43 by sharrach         ###   ########.fr       */
+/*   Updated: 2022/07/02 14:22:40 by sharrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static t_philo	*get_args(int argc, char **argv)
 	if (argc == 6)
 	{
 		tmp->num_eat = ft_atoi(argv[5]);
-		if (tmp->num_eat == -1)
+		if (tmp->num_eat <= -1)
 			ft_exit("Error\nWrong argument");
 	}
 	tmp->num_eat_count = 0;
